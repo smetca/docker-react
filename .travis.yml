@@ -10,4 +10,17 @@ before-install:
 script:
   - docker run -e CI=true smetca/docker-react npm test -- --coverage
 
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-west-2"
+  app: "docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-eu-west-2-026197526383"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+
+
 # docker run -e CI=true smetca/docker-react npm test
